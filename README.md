@@ -19,15 +19,14 @@ kubectl krew install imagescan
 chmod +x kubectl-imagescan
 export PATH="$PATH:kubectl-imagescan"
 
-kubectl imagescan pod <pod-name>
-kubectl imagescan pod -n <namespace> <pod-name> 
+kubectl imagescan pod <namespace> <pod-name> 
 ```
 
 ## Krew
 
 ```bash
 # local test
-kubectl krew install --manifest=imagescan.yaml
+kubectl krew install --manifest=krew/imagescan.yaml
 ```
 
 ## Test stuff
