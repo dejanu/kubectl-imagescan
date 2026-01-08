@@ -1,0 +1,24 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: imagescan
+spec:
+  version: v1.0.0
+  homepage: https://github.com/dejanu/kubectl-imagescan
+  shortDescription: Scan container images used by Pods
+  description: |
+    kubectl-imagescan inspects container images referenced by Pods
+    to surface common issues, metadata, and signals useful for triage.
+  platforms:
+    - selector:
+        matchLabels:
+          os: linux
+      uri: https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan
+      sha256: d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
+      bin: kubectl-imagescan
+    - selector:
+        matchLabels:
+          os: darwin
+      uri: https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan
+      sha256: d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
+      bin: kubectl-imagescan

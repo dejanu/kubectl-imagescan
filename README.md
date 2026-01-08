@@ -22,3 +22,10 @@ export PATH="$PATH:kubectl-imagescan"
 kubectl imagescan pod <pod-name>
 kubectl imagescan pod -n <namespace> <pod-name> 
 ```
+
+## Krew
+
+```bash
+# local test
+kubectl krew install --manifest=imagescan.yaml
+```
