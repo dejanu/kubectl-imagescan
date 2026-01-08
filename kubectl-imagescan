@@ -6,10 +6,15 @@ show_usage() {
     cat << 'EOF'
     Usage: kubectl quickscan [options] <namespace> <pod>
     Options:
-    -h, --help    show this help message and exit
-    -v, --version show version and exit
+    -h, --help    show this help message
+    -v, --version show version
 EOF
 }
+
+if [ "$#" -eq 0 ]; then
+    show_usage
+    exit 0
+fi
 
 case "$1" in
     -h|--help)
@@ -21,7 +26,6 @@ case "$1" in
         exit 0
         ;;
 esac
-
 
 if [ -z "$1" ]; then
   echo "Please provide a valid namespace as the first argument"
@@ -52,7 +56,7 @@ echo "Images in $nspace/$pod:"
 
 TRIVY_CACHE_DIR="${HOME}/.cache/trivy"
 
-# Function to update Trivy database
+# update Trivy database
 update_trivy_db() {
     echo "📦 Updating vulnerability database..."
     mkdir -p "$TRIVY_CACHE_DIR"
