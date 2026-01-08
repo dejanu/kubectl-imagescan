@@ -29,3 +29,23 @@ kubectl imagescan pod -n <namespace> <pod-name>
 # local test
 kubectl krew install --manifest=imagescan.yaml
 ```
+
+## Test stuff
+
+```bash
+
+# compute sha
+
+curl -L --fail --silent 'https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan' \
+  | shasum -a 256 | awk '{print $1}'    # macOS
+  
+curl -L --fail -o /tmp/kubectl-imagescan.raw 'https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan'
+
+# mac
+shasum -a 256 /tmp/kubectl-imagescan.raw 
+
+# Linux
+sha256sum /tmp/kubectl-imagescan.raw 
+
+file /tmp/kubectl-imagescan.raw
+```
