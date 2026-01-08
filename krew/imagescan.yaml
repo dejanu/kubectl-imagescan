@@ -14,11 +14,11 @@ spec:
         matchLabels:
           os: linux
       uri: https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan
-      sha256: f80f75cbc58bddb7a53bb950834f756faf4f0578abe78a30aa393c637f1a3a9a
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       bin: kubectl-imagescan
     - selector:
         matchLabels:
           os: darwin
       uri: https://raw.githubusercontent.com/dejanu/kubectl-imagescan/v1.0.0/kubectl-imagescan
-      sha256: f80f75cbc58bddb7a53bb950834f756faf4f0578abe78a30aa393c637f1a3a9a
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       bin: kubectl-imagescan
