@@ -27,6 +27,12 @@ case "$1" in
         ;;
 esac
 
+if ! docker info &> /dev/null; then
+    echo "Error: Docker daemon is not running"
+    exit 1
+fi
+
+# check if namespace is provided
 if [ -z "$1" ]; then
   echo "Please provide a valid namespace as the first argument"
   echo "Available namespaces:"
@@ -42,7 +48,7 @@ else
     fi
 fi
 
-# second argument is the pod name
+# check if pod name is provided
 if [ -z "$2" ]; then
     echo "Please provide the pod name as the second argument"
     echo "Available pods:"
