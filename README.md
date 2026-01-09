@@ -4,7 +4,7 @@ Scan container images used by Pods.
 
 Motivation: A Non-invazive way to quickly inspect container images used in cluster.
 
-Scanners: Trivy --scanners <scanner1,scanner2> i.e. --scanners vuln,secret,misconfig default scanner is vulnerabilities scanner
+Scanners: Trivy `--scanners <scanner1,scanner2>` i.e. `--scanners vuln,secret,misconfig` default scanner is vulnerabilities scanner
 
 ✅ Interactive scanning: Prompts before scanning each image
 
