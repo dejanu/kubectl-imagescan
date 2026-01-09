@@ -25,7 +25,6 @@ coverage.out
 # vendor/
 
 # Dependency directories (old GOPATH-style)
-pkg/
 src/
 
 # IDEs and editors
