@@ -6,6 +6,10 @@ Motivation: A Non-invazive way to quickly inspect container images used in clust
 
 Scanners: Trivy --scanners <scanner1,scanner2> i.e. --scanners vuln,secret,misconfig default scanner is vulnerabilities scanner
 
+✅ Interactive scanning: Prompts before scanning each image
+✅ Namespace/pod validation: Helps users find the right resources
+✅ Severity filtering: Only shows HIGH and CRITICAL vulnerabilities
+
 ## Installation
 
 ```bash
