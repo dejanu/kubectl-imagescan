@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+VERSION="1.0.0"
+
+show_usage() {
+    cat << 'EOF'
+    Usage: kubectl imagescan [options] <namespace> <pod>
+    Options:
+    -h, --help    show this help message
+    -v, --version show version
+EOF
+}
+
+if [ "$#" -eq 0 ]; then
+    show_usage
+    exit 0
+fi
+
+case "$1" in
+    -h|--help)
+        show_usage
+        exit 0
+        ;;
+    -v|--version)
+        echo "kubectl-imagescan v$VERSION"
+        exit 0
+        ;;
+esac
+
+if ! docker info &> /dev/null; then
+    echo "Error: Docker daemon is not running"
+    exit 1
+fi
+
+# check if namespace is provided
+if [ -z "$1" ]; then
+  echo "Please provide a valid namespace as the first argument"
+  echo "Available namespaces:"
+  kubectl get ns | awk 'NR>1 {print $1}'
+  exit 1
+else
+    if ! kubectl get ns "$1" &> /dev/null; then
+        echo "Namespace $1 does not exist, available namespaces:"
+        kubectl get ns | awk 'NR>1 {print $1}'
+        exit 1
+    else
+        nspace="$1"
+    fi
+fi
+
+# check if pod name is provided
+if [ -z "$2" ]; then
+    echo "Please provide the pod name as the second argument"
+    echo "Available pods:"
+    kubectl get pods -n "$nspace" | awk 'NR>1 {print $1}'
+    exit 1
+else
+    pod="$2"
+fi
+
+echo "Images in $nspace/$pod:"
+
+TRIVY_CACHE_DIR="${HOME}/.cache/trivy"
+
+# update Trivy database
+update_trivy_db() {
+    echo "📦 Updating vulnerability database..."
+    mkdir -p "$TRIVY_CACHE_DIR"
+    docker run --rm \
+        -v "$TRIVY_CACHE_DIR:/root/.cache/" \
+        aquasec/trivy:latest \
+        image --download-db-only 2>/dev/null
+}
+
+# Function to scan an image with Trivy
+scan_image() {
+    local image="$1"
+    docker run --rm \
+        -v "$TRIVY_CACHE_DIR:/root/.cache/" \
+        aquasec/trivy:latest \
+        image \
+        --skip-db-update \
+        --severity HIGH,CRITICAL \
+        --format table \
+        --quiet \
+        --timeout 10m \
+        "$image" 2>&1
+}
+
+# Update Trivy DB once at the start
+update_trivy_db
+
+# Scan container images
+for image in $(kubectl get pods -n "$nspace" "$pod" -ojsonpath='{range .spec.containers[*]}{.image}{"\n"}{end}'); do
+    read -p "Scan $image? (y/n): " -n 1 -r
+    echo 
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        scan_image "$image"
+    else
+        echo -e "\nSkipping ${image}...\n"
+    fi
+done
