@@ -2,7 +2,7 @@
 
 Scan container images used by Pods.
 
-Motivation: A Non-invazive way to quickly inspect container images used in cluster.
+Motivation: A non-invasive, on-the-spot inspection of container images used in a by workloads in a K8S cluster.
 
 Scanners: Trivy `--scanners <scanner1,scanner2>` i.e. `--scanners vuln,secret,misconfig` default scanner is vulnerabilities scanner
 
@@ -12,10 +12,14 @@ Scanners: Trivy `--scanners <scanner1,scanner2>` i.e. `--scanners vuln,secret,mi
 
 ✅ Severity filtering: Only shows HIGH and CRITICAL vulnerabilities
 
-## Installation
+## Krew Installation
 
 ```bash
+# kubectl plugin list
+kubectl krew list
+
 kubectl krew install imagescan
+kubectl krew uninstall imagescan
 ```
 
 ## Usage
@@ -28,22 +32,4 @@ export PATH="$PATH:kubectl-imagescan"
 kubectl imagescan pod <namespace> <pod-name> 
 ```
 
-## Krew
-
-```bash
-
-# kubectl plugin list
-
-kubectl krew list
-kubectl krew uninstall imagescan
-
-# local test
-KREW_OS=darwin KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
-
-KREW_OS=darwin KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
-
-KREW_OS=linux KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
-
-KREW_OS=linux KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
-```
 

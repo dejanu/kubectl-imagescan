@@ -58,4 +58,13 @@ shasum -a 256 ./kubectl-imagescan_v1.0.1_linux_amd64.tar.gz | awk '{print $1}'
 shasum -a 256 ./kubectl-imagescan_v1.0.1_linux_arm64.tar.gz | awk '{print $1}'
 shasum -a 256 ./kubectl-imagescan_v1.0.1_darwin_amd64.tar.gz | awk '{print $1}'
 shasum -a 256 ./kubectl-imagescan_v1.0.1_darwin_arm64.tar.gz | awk '{print $1}'
-```
+
+
+# local test
+KREW_OS=darwin KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=darwin KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=linux KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=linux KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
