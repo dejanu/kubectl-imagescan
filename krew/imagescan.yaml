@@ -5,10 +5,11 @@ metadata:
 spec:
   version: v1.0.1
   homepage: https://github.com/dejanu/kubectl-imagescan
-  shortDescription: Scan container images used by Pods
+  shortDescription: Image vulnerability scanning for Kubernetes Pods
   description: |
-    kubectl-imagescan inspects container images referenced by Pods
-    to surface common issues, metadata, and signals useful for triage.
+    kubectl-imagescan embeds Trivy to perform vulnerability scanning on
+    container images used by Kubernetes Pods. It surfaces discovered CVEs,
+    associated metadata, and prioritized findings to identify security risks in cluster workloads.
   platforms:
     - selector:
         matchLabels:

@@ -31,7 +31,19 @@ kubectl imagescan pod <namespace> <pod-name>
 ## Krew
 
 ```bash
+
+# kubectl plugin list
+
+kubectl krew list
+kubectl krew uninstall imagescan
+
 # local test
-kubectl krew install --manifest=krew/imagescan.yaml
+KREW_OS=darwin KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=darwin KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=linux KREW_ARCH=amd64 kubectl krew install  --manifest=krew/imagescan.yaml
+
+KREW_OS=linux KREW_ARCH=arm64 kubectl krew install  --manifest=krew/imagescan.yaml
 ```
 
