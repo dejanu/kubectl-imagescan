@@ -13,12 +13,28 @@ spec:
     - selector:
         matchLabels:
           os: linux
-      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.2/kubectl-imagescan.tar.gz
-      sha256: 9a29bec89522d95717dfcc15d34ad9b29490058014b76ec2067b8940c0573635
+          arch: amd64
+      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.1/kubectl-imagescan-linux-amd64.tar.gz
+      sha256: a290c2f6adbcc50cb91be91cc86273c053bed11e372a39cd1e0807ad514932da
+      bin: kubectl-imagescan
+    - selector:
+        matchLabels:
+          os: linux
+          arch: arm64
+      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.1/kubectl-imagescan-linux-arm64.tar.gz
+      sha256: c444eba24a6e6c97b47265e6cb66ec1c68f61ef907311fa3ecb2d442c569633
       bin: kubectl-imagescan
     - selector:
         matchLabels:
           os: darwin
-      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.2/kubectl-imagescan.tar.gz
-      sha256: 9a29bec89522d95717dfcc15d34ad9b29490058014b76ec2067b8940c0573635
+          arch: amd64
+      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.1/kubectl-imagescan-darwin-amd64.tar.gz
+      sha256: 613cc307d75e21b0509eeaa49d26676b3fb70a9c131e5d2e94a3631a3db18b36
+      bin: kubectl-imagescan
+    - selector:
+        matchLabels:
+          os: darwin
+          arch: arm64
+      uri: https://github.com/dejanu/kubectl-imagescan/releases/download/v1.0.1/kubectl-imagescan-darwin-arm64.tar.gz
+      sha256: d68c2de1131a41b2dc8952981248811ac4f057f3e4df32559a609545b8b24ce8
       bin: kubectl-imagescan

@@ -39,6 +39,8 @@ kubectl krew install --manifest=krew/imagescan.yaml
 
 ```bash
 # compute sha
-tar -czf kubectl-imagescan.tar.gz kubectl-imagescan
-shasum -a 256 kubectl-imagescan.tar.gz
+shasum -a 256 ./kubectl-imagescan_v1.0.0_linux_amd64.tar.gz | awk '{print $1}'
+shasum -a 256 ./kubectl-imagescan_v1.0.0_linux_arm64.tar.gz | awk '{print $1}'
+shasum -a 256 ./kubectl-imagescan_v1.0.0_darwin_amd64.tar.gz | awk '{print $1}'
+shasum -a 256 ./kubectl-imagescan_v1.0.0_darwin_arm64.tar.gz | awk '{print $1}'
 ```
